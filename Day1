@@ -1,0 +1,210 @@
+organism='E. Coli'
+print(organism)
+temperature = 37.0 # Body temperature in Celsius
+print(temperature) # Output: 37.0
+temperature = 39.5 # Fever temperature
+print(temperature) # Output: 39.5
+# The old value (37.0) is gone — replaced by t
+# Good variable names
+dna_sequence = "ATCG"
+cell_count = 1000
+species_name = "Homo sapiens"
+gc_content = 0.52
+# Bad variable names (will cause errors or confusion)
+# 2nd_sequence = "GCTA" # Cannot start with a number
+# cell count = 500 # No spaces allowed
+# class = "Mammalia" # 'class' is a reserved Python keyword
+#Data types
+# Types 1: strings
+dna = "ATCGGCTATGCCA" # A DNA sequence
+species = 'Arabidopsis thaliana' # Single quotes work too
+gene_id = "ENSG00000139618" # A gene identifier
+note = "Sample collected at dawn, coastal zone B"
+# Types 2: integers
+chromosome_count = 46 # Human diploid chromosome count
+sample_id = 2047 # Integer ID number
+base_pairs = 3200000000 # Approximate human genome size in bp
+# Types 3: Floats
+body_temp = 37.2 # Temperature in Celsius
+ph_value = 7.35 # Blood pH
+gc_content = 0.584 # 58.4% GC content
+enzyme_concentration = 0.00025 # Molarity
+# Types 4: Booleans
+is_pathogenic = True # This organism IS pathogenic
+is_motile = False # This organism is NOT motile
+gene_expressed = True # Gene is being expressed
+sample_contaminated = False # Sample is clean
+#checking the type of a variable
+dna = "ATCG"
+count = 46
+temp = 37.2
+alive = True
+print(type(dna)) # Output: <class 'str'>
+print(type(count)) # Output: <class 'int'>
+print(type(temp)) # Output: <class 'float'>
+print(type(alive)) # Output: <class 'bool'>
+#Working with Strings — Biology's Native Data Type
+sequence = "ATCGGCTATGCCA"
+# Length — how many characters?
+print(len(sequence))
+# Access individual characters (indexing)
+# Positions count from 0, not 1!
+print(sequence[0])
+print(sequence[1])
+print(sequence[-1])
+# Slicing — extract a portion
+print(sequence[0:3])
+print(sequence[4:7])
+# Format: [start:stop] — start is included, stop is excluded
+# Convert to uppercase/lowercase
+lower_seq = sequence.lower()
+print(lower_seq)
+upper_seq = 'atcg'.upper()
+print(upper_seq)
+#String Concatenation — Joining Sequences
+# Concatenation means joining strings together with +
+exon1 = "ATCGGC"
+exon2 = "TATGCC"
+exon3 = "AAGCTA"
+# Join the exons (as in mRNA splicing!)
+mrna= exon1+exon2+exon3
+print(mrna)
+# f-strings: embedding variables in text (very useful)
+genome_size = 4641652
+repport =f"Organism: {organism}, Genome: {genome_size} bp"
+print(repport)
+#Basic Math Operations
+# Basic arithmetic
+total_cells = 1000
+dividing_cells = 350
+percentage = (dividing_cells / total_cells) * 100
+print(f"Mitotic index: {percentage}%") # Output: Mitotic index: 35.0%
+# Integer division (floor division) — drops the decimal
+full_codons = 23 // 3 # How many complete codons in 23 nucleotides?
+print(full_codons) # Output: 7
+# Modulo — the remainder
+leftover = 23 % 3 # Nucleotides left over after full codons
+print(leftover) # Output: 2
+# Power (exponentiation)
+cell_doublings = 10
+initial_cells = 1
+final_cells = initial_cells * (2 ** cell_doublings)
+print(final_cells) # Output: 1024
+# Basic arithmetic
+total_cells = 1000
+dividing_cells = 350
+percentage = (dividing_cells / total_cells) * 100
+print(f"Mitotic index: {percentage}%") # Output: Mitotic index: 35.0%
+# Integer division (floor division) — drops the decimal
+full_codons = 23 // 3 # How many complete codons in 23 nucleotides?
+print(full_codons) # Output: 7
+# Modulo — the remainder
+leftover = 23 % 3 # Nucleotides left over after full codons
+print(leftover) # Output: 2
+# Power (exponentiation)
+cell_doublings = 10
+initial_cells = 1
+final_cells = initial_cells * (2 ** cell_doublings)
+print(final_cells) # Output: 1024
+# Your First Complete Biological Program
+# gc_calculator.py
+# Calculates the GC content of a DNA sequence
+# Step 1: Define our sequence
+dna = "ATCGGCTATGCCAAGCTAGCGGTA"
+# Step 2: Count each nucleotide
+count_g = dna.count("G")
+count_c = dna.count("C")
+count_t = dna.count("T")
+count_a = dna.count("A")
+# Step 3: Get the total length
+total = len(dna)
+# Step 4: Calculate GC content
+gc_count = count_g + count_c
+gc_content = (gc_count / total) * 100
+# Step 5: Display the results
+print("=== DNA Analysis Report ===")
+print(f"Sequence: {dna}")
+print(f"Length: {total} bp")
+print(f"A count: {count_a}")
+print(f"T count: {count_t}")
+print(f"G count: {count_g}")
+print(f"C count: {count_c}")
+print(f"GC Content: {gc_content:.1f}%")
+# The :.1f inside the f-string means: format as a float with 1 decimal place
+# Day 1 Exercises
+#Exercise 1: Create variables for a species you are studying. Include its name (str),
+#its average body mass in grams (float), whether it is endangered (bool), and its
+#approximate population size (int). Print all four with descriptive labels using f-strings
+species_name= "Plasmodium falciparum"
+average_mass= 0.003
+endanger=True
+pop_size=100
+print(f"Specie's name is {species_name}, with {average_mass} of average body mass and a population size of {pop_size}. ")
+#Exercise 2: Take the DNA sequence 'GCATCGATCGATCGCGATCG' and use Python to find:
+#(a) its length, (b) the first 6 nucleotides, (c) the last 4 nucleotides.
+#(Hint: use len(), slicing [0:6], and negative indexing [-4:])
+#step 1: naming variables
+dna_sequence= "GCATCGATCGATCGCGATCG"
+#step2: determine its lenght
+total_lenght = len(dna_sequence)
+print(total_lenght) 
+#step3: display the first 6 nucleotides
+print(dna_sequence[0:6])
+#step$: display the last 4 nucleotides
+print(dna_sequence[-4:])
+#Exercise 3: Modify the GC content calculator above to also calculate and print
+#the AT content. Then verify that GC% + AT% = 100%.
+#Challenge: Look up the complement strand rule (A-T, G-C). Can you write code
+#that stores a sequence and its complement as separate variables?
+# count each nucleotide bases
+count_A=dna_sequence.count("A")
+count_C=dna_sequence.count("C")
+count_T =dna_sequence.count("T")
+count_G =dna_sequence.count("G")
+# determine gc content
+GC_count = count_G+count_C
+GC_content = (GC_count/total_lenght)*100
+# determine at content
+at_count = count_A+count_T
+at_content = (at_count/total_lenght)*100
+# verify if at_content+gc_content is equal to 100%
+total_content = GC_content + at_content
+print(f"Total content: {total_content:0.2f}%")
+if total_content==100:
+  print(f"this value is true")
+else:
+  print(f"this value is false") 
+# display all the value
+print(f"A count :{count_A}")
+print(f" C count: {count_C}")
+print( f" G count: {count_G}")
+print(f" G count: {count_G}") 
+print(f"GC content: {GC_content:.2f}%")
+print(f"AT content: {at_content:.2f}%")
+# creat a complementary base for the DNA seauence
+#Method1
+# creat a complementary dictionnary 
+complement_dict = {
+  "A":"T",
+  "T": "A",
+  "G": "C",
+  "C": "G"
+}
+# provide complementary sequence
+complement =""
+for base in dna_sequence:
+  complement += complement_dict[base]
+print(f"Original sequence: {dna_sequence}")
+print(f"Complement sequence: {complement}")
+#Method 2
+# creat a complementary dictionnary
+Complement_dict ={
+  "A":"T",
+  "T": "A",
+  "G": "C",
+  "C": "G"
+}
+# provide complementary sequence
+Complement ="".join([Complement_dict[base] for base in dna_sequence])
+print(f"Original sequence: {dna_sequence}")
+print(f"Complementary sequence: {Complement}")
