@@ -1,0 +1,173 @@
+#2.1  The if Statement: A Cell's Threshold
+# The basic if statement
+body_temperature = 38.5 # degrees Celsius
+if body_temperature > 37.5:
+    print("Fever detected!")
+    print("Initiating immune response...")
+# IMPORTANT: The indented lines ONLY run if the condition is True
+# If body_temperature were 36.8, nothing would be printed
+# exqmple
+body_temperature = 36.5 # degrees Celsius
+if body_temperature > 37.5:
+    print("Fever detected!")
+    print("Initiating immune response...")
+# 2.2 if/else: Two Response Pathways
+ph_level = 6.8 # pH of a sample
+if ph_level < 7.0:
+    print("Solution is ACIDIC")
+    print(f"pH: {ph_level} — below neutral")
+else:
+    print("Solution is NEUTRAL or ALKALINE")
+    print(f"pH: {ph_level} — at or above neutral")
+# Only ONE of these two blocks will ever run
+# 2.3 elif: Multiple Response Pathways
+# Classifying a DNA sequence by GC content
+gc_content = 0.68 # 68% GC
+if gc_content < 0.40:
+    classification = "AT-rich (low GC)"
+    stability = "relatively unstable"
+elif gc_content < 0.50:
+    classification = "Moderate GC"
+    stability = "moderate stability"
+elif gc_content < 0.65:
+    classification = "GC-rich"
+    stability = "thermally stable"
+else:
+    classification = "Extremely GC-rich"
+    stability = "very high thermal stability"
+print(f"Classification: {classification}")
+print(f"Thermal stability: {stability}")
+# Output: Classification: Extremely GC-rich
+# Thermal stability: very high thermal stability
+# 2.4 Comparison Operators
+a = 10
+b = 20
+print(a == b) # False — equal to?
+print(a != b) # True — not equal to?
+print(a < b) # True — less than?
+print(a > b) # False — greater than?
+print(a <= b) # True — less than or equal to?
+print(a >= b) # False — greater than or equal to?
+# Biological examples
+population = 500
+print(population > 1000) # False — above minimum viable population?
+gc_content = 0.52
+print(0.40 <= gc_content <= 0.65) # True — Python allows chained comparisons!
+# Common Mistake: = vs ==
+#Single equals (=) ASSIGNS a value to a variable: ph = 7.4
+#Double equals (==) COMPARES two values: ph == 7.4
+#Writing 'if ph = 7.4:' will give you a SyntaxError.
+#Always use == when asking a question inside an if statement.
+# 2.5 Logical Operators: AND, OR, NOT
+# AND — both conditions must be True
+temperature = 37
+oxygen_level = 18.5 # % oxygen
+if temperature >= 35 and oxygen_level >= 16:
+    print("Conditions suitable for aerobic respiration")
+else:
+    print("Conditions unfavorable")
+# OR — at least one condition must be True
+species = "Acidobacteria"
+if species == "Acidobacteria" or species == "Acidithiobacillus":
+    print("Acidophilic organism detected")
+# NOT — reverses True/False
+sample_contaminated = False
+if not sample_contaminated:
+    print("Sample is clean — proceeding with analysis")
+else:
+    print("Sample contaminated — discard and re-collect")
+#2.6 Nested Conditions — Signaling Cascades
+# A simple organism classifier
+organism_name = "Streptococcus pyogenes"
+gram_positive = True
+oxygen_requirement = "facultative anaerobe"
+print(f"Classifying: {organism_name}")
+if gram_positive:
+    print("Gram-positive organism")
+# Now check oxygen requirements
+    if oxygen_requirement == "obligate aerobe":
+       print("Category: Gram+ aerobe")
+    elif oxygen_requirement == "facultative anaerobe":
+       print("Category: Gram+ facultative anaerobe")
+    else:
+       print("Category: Gram+ anaerobe")
+else:
+    print("Gram-negative organism")
+    print("Further classification requires additional tests")
+#2.7 Putting It Together: A Biological Decision Engine
+# water_quality.py
+# Assesses water quality from sensor readings
+dissolved_oxygen = 7.2 # mg/L
+nitrate_level = 12.0 # mg/L
+ph = 7.8
+turbidity = 3.5 # NTU
+print("=== Water Quality Assessment ===")
+print(f"DO: {dissolved_oxygen} mg/L | Nitrate: {nitrate_level} mg/L")
+print(f"pH: {ph} | Turbidity: {turbidity} NTU")
+print()
+# Check dissolved oxygen (most critical for aquatic life)
+if dissolved_oxygen >= 8.0:
+    oxygen_status = "Excellent"
+elif dissolved_oxygen >= 6.0:
+    oxygen_status = "Good"
+elif dissolved_oxygen >= 4.0:
+    oxygen_status = "Moderate — fish stress likely"
+else:
+    oxygen_status = "Poor — aquatic life at risk"
+# Check pH
+if 6.5 <= ph <= 8.5:
+    ph_status = "Normal"
+else:
+    ph_status = "Abnormal — check for pollution"
+# Overall assessment
+if dissolved_oxygen >= 6.0 and 6.5 <= ph <= 8.5 and nitrate_level <= 10:
+    overall = "HEALTHY"
+elif dissolved_oxygen >= 4.0 and 5.5 <= ph <= 9.0:
+    overall = "MODERATE CONCERN"
+else:
+    overall = "POOR — INTERVENTION REQUIRED"
+
+print(f"Oxygen status: {oxygen_status}")
+print(f"pH status: {ph_status}")
+print(f"Overall: {overall}")
+# Day 2 Exercises
+#Exercise 1: Write a program that takes a body temperature and classifies it:
+#< 35.0°C = Hypothermia, 35-37.5°C = Normal, 37.5-38.5°C = Low fever,
+#38.5-40°C = High fever, > 40°C = Dangerous hyperthermia.
+Temp = float(input("enter body temperature: "))
+if Temp < 35.0:
+    body_temperature = "Hypoglycemia"
+elif 35<= Temp < 37.5:
+    body_temperature = "Normal"
+elif  37.5<= Temp < 38.5:
+    body_temperature = "Low fever"
+elif  38.5<= Temp < 40.0:
+    body_temperature = "High fever"
+else:
+    body_temperature = "Dangerous hyperthermia"
+print(f"Body temperature: {body_temperature}")
+#Exercise 2: A cell membrane has a resting potential of -70 mV. Write code that
+#checks if a given membrane potential represents: resting (< -60 mV),
+#depolarizing (-60 to 30 mV), or hyperpolarized (< -90 mV).
+cell_membrane = "-80 mV"
+if cell_membrane < "-60 mV":
+    membrane_potential = "resting"
+elif "-60 mV"<=cell_membrane< "30 mV": 
+    membrane_potential = "depolarizing"
+else:
+    membrane_potential = "hyperpolarized"
+print(f"Cell membrane potential is {membrane_potential}")
+#Exercise 3: Write a species habitat suitability checker. Define variables for
+#temperature, rainfall, and altitude. Use AND/OR conditions to determine if
+#conditions are suitable for a species you choose (set your own thresholds).
+#Challenge: Write a blood type compatibility checker. Given a donor type and
+#recipient type (as string variables), determine if transfusion is safe.
+# variables 
+temp =float(input("Temperature (°C):"))
+rainfall = float(input("Pluviometrie  (mm/an):"))
+altitude = float(input("Altitude (m):"))
+#condition
+if (20 <=temp<=30) and (1000 <= rainfall<=2000) and (altitude<1500):
+    print("Habitat suitable")
+else:
+    print("Habitat non suitable")
