@@ -1,0 +1,155 @@
+#3.1 The for Loop: Iterating Over a Collection
+# Processing every nucleotide in a sequence
+sequence = "ATCGGC"
+for nucleotide in sequence:
+    print(nucleotide)
+
+#3.2 The range() Function: Controlled Repetition
+# range(n) generates numbers from 0 to n-1
+for i in range(5):
+    print(f"Generation {i + 1}")
+# range(start, stop) — from start up to (not including) stop
+for generation in range(1, 11):
+    print(f" Simulating generation {generation}...")
+# range(start, stop, step) — custom increments
+for temp in range(20, 41, 5): # 20, 25, 30, 35, 40
+    print(f"Testing enzyme at {temp}°C")
+#3.3 Accumulation — Building Results
+# Count GC nucleotides using a loop
+sequence = "ATCGGCTATGCCAAGCTAGCGGTA"
+gc_count = 0 # accumulator — starts at zero
+for nucleotide in sequence:
+    if nucleotide == "G" or nucleotide == "C":
+        gc_count = gc_count + 1 # or: gc_count += 1
+
+gc_content = (gc_count / len(sequence)) * 100
+print(f"GC count: {gc_count}")
+print(f"GC content: {gc_content:.1f}%")
+# Simulating population growth
+population = 100
+growth_rate = 0.15 # 15% per generation
+print("Population over 8 generations:")
+for gen in range(1, 9):
+    population = population * (1 + growth_rate)
+print(f" Generation {gen}: {population:.0f} individuals")
+#3.4 The while Loop: Waiting for a Signal
+# Simulate cell doubling until population exceeds threshold
+cell_count = 1
+doubling_time = 0 # hours elapsed
+print("Bacterial growth simulation:")
+while cell_count < 1000:
+    cell_count = cell_count * 2 # Each division doubles the count
+    doubling_time += 20 # Each doubling takes 20 minutes
+    print(f" {doubling_time} min: {cell_count} cells")
+print(f"Threshold reached at {doubling_time} minutes!")
+#3.5 Loop Control: break and continue
+# continue — skip ambiguous nucleotides
+sequence = "ATCNGNNTCG" # N = unknown nucleotide
+valid_count = 0
+for base in sequence:
+    if base == "N":
+        continue # Skip this base, go to next iteration
+    valid_count += 1
+    print(f"Processing base: {base}")
+print(f"Valid bases processed: {valid_count}")
+# break — stop searching once target found
+# Find the position of the first stop codon (TAG, TAA, or TGA)
+codons = ["ATG", "GGC", "TAG", "ATT", "CGA"] # Mock ORF
+print("Scanning reading frame...")
+for i, codon in enumerate(codons): # enumerate() gives both index and value
+    print(f" Position {i}: {codon}")
+    if codon in ["TAG", "TAA", "TGA"]:
+        print(f" Stop codon found at position {i}!")
+        break # No need to read further
+#3.6 Nested Loops: Cells Within Organisms
+# Compare all pairs of sequences for similarity
+sequences = ["ATCG", "ATGG", "GCTA"]
+names = ["seq1", "seq2", "seq3"]
+print("Pairwise sequence comparison:")
+for i in range(len(sequences)):
+    for j in range(i + 1, len(sequences)): # Start at i+1 to avoid repeats
+        seq_a = sequences[i]
+        seq_b = sequences[j]
+        # Count matching positions
+        matches = 0
+        for pos in range(len(seq_a)):
+            if seq_a[pos] == seq_b[pos]:
+                matches += 1
+        similarity = (matches / len(seq_a)) * 100
+        print(f" {names[i]} vs {names[j]}: {similarity:.0f}% identity")
+
+#3.7 A Complete Loop-Powered Sequence Analyzer
+# sequence_stats.py
+# Full analysis of a DNA sequence using loops
+sequence = "ATCGGCTATGCCAAGCTAGCGGTAATCGATCGATCG"
+# Initialize counters
+nucleotide_counts = {"A": 0, "T": 0, "G": 0, "C": 0, "N": 0}
+for base in sequence.upper(): # .upper() handles lowercase input
+    if base in nucleotide_counts:
+        nucleotide_counts[base] += 1
+    else:
+        nucleotide_counts["N"] += 1 # Unknown base
+total_valid = len(sequence) - nucleotide_counts["N"]
+print("=== Nucleotide Composition ===")
+for base, count in nucleotide_counts.items():
+    if base != "N":
+        percentage = (count / total_valid) * 100
+        bar = "#" * int(percentage / 2) # ASCII bar chart!
+        print(f" {base}: {count:3d} ({percentage:5.1f}%) |{bar}")
+gc = nucleotide_counts["G"] + nucleotide_counts["C"]
+print(f"GC content: {(gc/total_valid)*100:.1f}%")
+print(f"AT/GC ratio: {(nucleotide_counts['A']+nucleotide_counts['T'])/gc:.2f}")
+#Exercise 1: Write a for loop that iterates over the sequence 'ATCGATCGATCG' and
+#prints the complement of each base (A->T, T->A, G->C, C->G). Use if/elif/else.
+# declaration of variables
+sequence = "ATCGATCGATCG"
+# loop iteration
+for base in sequence:
+    if base == "A":
+        print("T")
+    elif base == "T":
+         print("A")
+    elif base == "G":
+        print("C")
+    else:
+       base == "C"
+       print("G")
+
+for base in sequence:
+    if base == "A":
+        complement = "T"
+    elif base == "T":
+         complement = "A"
+    elif base == "G":
+        complement = "C"
+    else:
+       base == "C"
+       complement = "G"
+       print(f"Complement: {complement}")
+
+#Exercise 2: Simulate logistic population growth. Start with N=50, K=1000 (carrying
+#capacity), r=0.3. Each generation: N = N + r * N * (1 - N/K). Use a for loop for
+#20 generations and print population each generation.
+# variables declaration
+N = 50
+K = 1000
+growth_rate = 0.3
+print("Population over 20 generations:")
+for gen in range(1, 21):
+    N = N + growth_rate * N * (1-N/K)
+    print(f"Generation {gen}:  {N:.0f} individuals")
+
+#Exercise 3: Write a codon reader. Given a DNA sequence (multiple of 3), use a loop
+#with range(0, len(seq), 3) to extract and print each codon.
+#Challenge: Write a loop that finds and prints all occurrences of a restriction
+#enzyme recognition site (e.g., 'GAATTC' for EcoRI) in a longer sequence.
+sequence = "ATCGATCGATCG"
+for i in range(0, len(sequence), 3):
+    codon = sequence[i:i+3]
+    print(codon)
+# print all occurence of a restriction enzyme call EcoRI 'GAATTC'
+sequence  = "ATCGAATTCGATCGGAATTCATCG"
+site = "GAATTC"
+for i in range(len(sequence) - len(site) + 1):
+    if sequence[i:i+len(site)] == site:
+        print(f"Site at position {i}")
